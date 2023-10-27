@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AboutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::fallback(function () {
+    return "Wah kamu nyasar, turn back!";
 });
+
+Route::get('/', function () {
+    return view('landing');
+});
+
+
+Route::get('/about', [AboutController::class, 'index']);

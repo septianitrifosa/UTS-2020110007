@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::fallback(function () {
+    return "Wah kamu nyasar, turn back!";
 });
+
+Route::get('/', function () {
+    return view('landing');
+});
+
+
+Route::get('/about', [AboutController::class, 'index']);
+Route::get('/transaction', [TransactionController::class,'index']);
+
+Route::resource('transactions', TransactionController::class);
